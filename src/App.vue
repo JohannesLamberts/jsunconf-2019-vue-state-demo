@@ -2,36 +2,49 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>Demo Time</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
+        v-for="(route, index) of routes"
+        :key="index"
+        :to="route.to"
+        exact
         flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">{{route.label}}</span>
       </v-btn>
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import DataApi from '@/models/dataApi'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
   data() {
     return {
-      //
+      routes: [
+        {
+          to: { name: 'index' },
+          label: 'Index',
+        },
+        {
+          to: { name: 'warehouse' },
+          label: 'Warehouse',
+        },
+      ],
+    }
+  },
+  models() {
+    return {
+      DataApi,
     }
   },
 }
