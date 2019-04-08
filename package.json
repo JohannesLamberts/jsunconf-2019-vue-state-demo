@@ -9,8 +9,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@sum.cumo/vue-history": "^1.0.0",
-    "@sum.cumo/vue-models": "^1.0.0",
+    "@sum.cumo/vue-history": "^1.0.1",
+    "@sum.cumo/vue-models": "^1.0.1",
     "core-js": "^2.6.5",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
