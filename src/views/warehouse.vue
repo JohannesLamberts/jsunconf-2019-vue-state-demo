@@ -9,7 +9,7 @@
       <v-flex>
         <v-card class="ma-2">
           <v-card-title primary-title class="headline">
-            Warehouse: {{Warehouse.items.length}} items
+            Warehouse
           </v-card-title>
         </v-card>
       </v-flex>
@@ -23,18 +23,14 @@
 </template>
 
 <script>
-import ExampleWarehouseList from '../components/warehouse-list'
-import ApiMode from '../components/api-mode'
-import Warehouse from '@/models/warehouse'
+import ExampleWarehouseList from '@/components/warehouse-list'
+import ApiMode from '@/components/api-mode'
 
 export default {
   name: 'ExampleWarehouse',
   components: {
     ApiMode,
     ExampleWarehouseList,
-  },
-  models: {
-    Warehouse,
   },
 }
 

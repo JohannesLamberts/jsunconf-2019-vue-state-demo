@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueHistory from '@sum.cumo/vue-history'
-import VueModels from '@sum.cumo/vue-models'
+import VueStates from '@sum.cumo/vue-states'
 import './plugins/vuetify'
 import App from './App'
 import router from './router'
 
-Vue.use(VueModels, {
+Vue.use(VueStates, {
   mixins: [{ history: true }],
   restoreOnReplace: true,
 })

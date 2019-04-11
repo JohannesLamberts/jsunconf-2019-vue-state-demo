@@ -13,7 +13,7 @@
       <v-list-tile-action>
         <v-btn
           icon
-          @click="Warehouse.outgoing(item.id)"
+          @click="() => null"
         >
           <v-icon>remove</v-icon>
         </v-btn>
@@ -21,7 +21,7 @@
       <v-list-tile-action>
         <v-btn
           icon
-          @click="Warehouse.incoming(item.id)"
+          @click="() => null"
         >
           <v-icon>add</v-icon>
         </v-btn>
@@ -33,6 +33,12 @@
 <script>
 export default {
   name: 'ExampleWarehouseList',
-  injectModels: ['Warehouse'],
+  data() {
+    return {
+      Warehouse: {
+        items: [],
+      },
+    }
+  },
 }
 </script>
