@@ -25,7 +25,7 @@
 <script>
 import ExampleWarehouseList from '@/components/warehouse-list'
 import ApiMode from '@/components/api-mode'
-import Warehouse from '@/models/warehouse'
+import Warehouse from '@/models/warehouse-advanced'
 
 export default {
   name: 'ExampleWarehouse',

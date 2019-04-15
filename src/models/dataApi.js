@@ -22,19 +22,19 @@ export default {
         {
           id: id(),
           version: 1,
-          label: 'Vue',
+          label: 'Awesome',
           count: 5,
         },
         {
           id: id(),
           version: 1,
-          label: 'State',
+          label: 'JSUnconf',
           count: 7,
         },
         {
           id: id(),
           version: 1,
-          label: 'Management',
+          label: '2019',
           count: 1,
         },
       ]

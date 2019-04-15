@@ -8,7 +8,8 @@
         {{item.count}} x {{item.label}}
       </v-list-tile-title>
       <v-list-tile-sub-title>
-        #{{item.id}}@v{{item.version}}
+        id: {{item.id}}<br />
+        version: {{item.version}}
       </v-list-tile-sub-title>
       <v-list-tile-action>
         <v-btn

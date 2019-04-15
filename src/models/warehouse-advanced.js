@@ -64,7 +64,9 @@ export default {
     },
     async syncSafe(item, onItemReset) {
       try {
-        await this.syncUnSafe(item)
+        /* eslint-disable-next-line no-param-reassign */
+        item.version += 1
+        await this.DataApi.sync(item)
       } catch (e) {
         switch (e.status) {
           case 404:
@@ -78,11 +80,6 @@ export default {
             throw e
         }
       }
-    },
-    async syncUnSafe(item) {
-      /* eslint-disable-next-line no-param-reassign */
-      item.version += 1
-      await this.DataApi.sync(item)
     },
   },
 }
