@@ -45,7 +45,6 @@ export default {
 
       switch (this.mode) {
         case 404: {
-          this.setMode(200)
           const e = new Error('Not found')
           e.status = 404
           e.version = null

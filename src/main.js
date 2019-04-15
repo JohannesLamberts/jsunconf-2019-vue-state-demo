@@ -1,18 +1,10 @@
 import Vue from 'vue'
-import VueHistory from '@sum.cumo/vue-history'
-import VueStates from '@sum.cumo/vue-states'
-import './plugins/vuetify'
+import VuetifyPlugin from '@/plugins/vuetify'
+import StatePlugin from '@/plugins/state'
 import App from './App'
 import router from './router'
 
-Vue.use(VueStates, {
-  mixins: [{ history: true }],
-  restoreOnReplace: true,
-})
-
-Vue.use(VueHistory, {
-  feed: { asyncStart: false },
-})
+[StatePlugin, VuetifyPlugin].forEach(plugin => Vue.use(plugin))
 
 Vue.config.productionTip = false
 

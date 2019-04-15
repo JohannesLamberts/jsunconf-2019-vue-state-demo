@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Warehouse should should synchronize items with external database 1`] = `
+Array [
+  Object {
+    "call": "DataApi.setMode",
+    "caller": null,
+    "error": null,
+    "payload": "[200]",
+    "ref": 0,
+  },
+  Object {
+    "call": "Warehouse.incoming",
+    "caller": null,
+    "error": null,
+    "payload": "[\\"mocked\\"]",
+    "ref": 1,
+  },
+  Object {
+    "call": "Warehouse.modifyItemCount",
+    "caller": Object {
+      "call": "Warehouse.incoming",
+      "ref": 1,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\",1]",
+    "ref": 2,
+  },
+  Object {
+    "call": "Warehouse.syncSafe",
+    "caller": Object {
+      "call": "Warehouse.modifyItemCount",
+      "ref": 2,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":2,\\"count\\":4},null]",
+    "ref": 3,
+  },
+  Object {
+    "call": "DataApi.sync",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 3,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":3,\\"count\\":4}]",
+    "ref": 4,
+  },
+]
+`;
+
+exports[`Warehouse should synchronize and redo after remote change 1`] = `
+Array [
+  Object {
+    "call": "DataApi.setMode",
+    "caller": null,
+    "error": null,
+    "payload": "[409]",
+    "ref": 0,
+  },
+  Object {
+    "call": "Warehouse.incoming",
+    "caller": null,
+    "error": null,
+    "payload": "[\\"mocked\\"]",
+    "ref": 1,
+  },
+  Object {
+    "call": "Warehouse.modifyItemCount",
+    "caller": Object {
+      "call": "Warehouse.incoming",
+      "ref": 1,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\",1]",
+    "ref": 2,
+  },
+  Object {
+    "call": "Warehouse.syncSafe",
+    "caller": Object {
+      "call": "Warehouse.modifyItemCount",
+      "ref": 2,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":2,\\"count\\":4},null]",
+    "ref": 3,
+  },
+  Object {
+    "call": "DataApi.sync",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 3,
+    },
+    "error": "Remotely changed",
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":3,\\"count\\":4}]",
+    "ref": 4,
+  },
+  Object {
+    "call": "DataApi.setMode",
+    "caller": Object {
+      "call": "DataApi.sync",
+      "ref": 4,
+    },
+    "error": null,
+    "payload": "[200]",
+    "ref": 5,
+  },
+  Object {
+    "call": "Warehouse.updateItemFromRemote",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 3,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\",{\\"status\\":409,\\"version\\":6,\\"count\\":900}]",
+    "ref": 6,
+  },
+  Object {
+    "call": "Warehouse.modifyItemCount",
+    "caller": Object {
+      "call": "Warehouse.modifyItemCount",
+      "ref": 2,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\",1]",
+    "ref": 7,
+  },
+  Object {
+    "call": "Warehouse.syncSafe",
+    "caller": Object {
+      "call": "Warehouse.modifyItemCount",
+      "ref": 7,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":6,\\"count\\":901},null]",
+    "ref": 8,
+  },
+  Object {
+    "call": "DataApi.sync",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 8,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":7,\\"count\\":901}]",
+    "ref": 9,
+  },
+]
+`;
+
+exports[`Warehouse should synchronize remotely removed items 1`] = `
+Array [
+  Object {
+    "call": "DataApi.setMode",
+    "caller": null,
+    "error": null,
+    "payload": "[404]",
+    "ref": 0,
+  },
+  Object {
+    "call": "Warehouse.incoming",
+    "caller": null,
+    "error": null,
+    "payload": "[\\"mocked\\"]",
+    "ref": 1,
+  },
+  Object {
+    "call": "Warehouse.modifyItemCount",
+    "caller": Object {
+      "call": "Warehouse.incoming",
+      "ref": 1,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\",1]",
+    "ref": 2,
+  },
+  Object {
+    "call": "Warehouse.syncSafe",
+    "caller": Object {
+      "call": "Warehouse.modifyItemCount",
+      "ref": 2,
+    },
+    "error": null,
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":2,\\"count\\":4},null]",
+    "ref": 3,
+  },
+  Object {
+    "call": "DataApi.sync",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 3,
+    },
+    "error": "Not found",
+    "payload": "[{\\"id\\":\\"mocked\\",\\"version\\":3,\\"count\\":4}]",
+    "ref": 4,
+  },
+  Object {
+    "call": "Warehouse.removeItem",
+    "caller": Object {
+      "call": "Warehouse.syncSafe",
+      "ref": 3,
+    },
+    "error": null,
+    "payload": "[\\"mocked\\"]",
+    "ref": 5,
+  },
+]
+`;
