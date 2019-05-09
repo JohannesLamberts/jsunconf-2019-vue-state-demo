@@ -1,35 +1,33 @@
 /* eslint-disable import/prefer-default-export */
 
-function collectItems(item, collector) {
-  collector.push(item)
-  item.subEvents.slice()
-    // .sort((a, b) => b.timestamp - a.timestamp)
-    .forEach(subItem => collectItems(subItem, collector))
+export function serializeEvent(event, depth) {
+  const items = [
+    '',
+    `${event.namespace}.${event.callId}(${JSON.parse(event.payload)
+      .map(el => (typeof el === 'string' ? `'${el}'` : JSON.stringify(el)))
+      .join(', ')})`,
+  ]
+
+  if (event.error) {
+    items.push(
+      '~~ errors with',
+      event.error.message,
+    )
+  }
+
+  if (event.subEvents.length) {
+    items.push(
+      ...event.subEvents.map(item => serializeEvent(item, depth + 1)),
+    )
+  }
+  return items
+    .map(el => `${'  '.repeat(depth)}${el}`)
+    .join('\n')
 }
 
 export function serializeHistory(history) {
-  const orderedItems = []
-
-  history.items
+  return `${history.items
     .filter(item => !item.caller)
-    .forEach((item) => {
-      collectItems(item, orderedItems)
-    })
-
-  return orderedItems.map(({
-    namespace,
-    callId,
-    payload,
-    error,
-    caller,
-  }, index) => ({
-    call: `${namespace}.${callId}`,
-    ref: index,
-    payload,
-    error: error && error.message,
-    caller: caller ? {
-      ref: orderedItems.indexOf(caller),
-      call: `${caller.namespace}.${caller.callId}`,
-    } : null,
-  }))
+    .map(item => serializeEvent(item, 0))
+    .join('\n\n')}\n`
 }
